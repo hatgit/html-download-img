@@ -13,10 +13,11 @@ import sys
 import os
 import multiprocessing
 
-
-
-url_to_scrape = 'http://' + sys.argv[2]                 # combine 'http://' with the given argument of cli
-dir_path = sys.argv[1]                                  # the directory is named by it's site
+def main():
+    if __name__ == '__main__':
+        main()
+url_to_scrape = 'http://' + sys.argv[1]                 # combine 'http://' with the given argument of cli
+dir_path = sys.argv[0]                                  # the directory is named by it's site
 headers = {                                             # set the useragent to appear as real user
     'User-Agent':'Mozilla/5.0 (Windows NT 6.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'
 }
@@ -88,7 +89,7 @@ def get_img(img_elements_f):
         req_img_url = requests.get(image_url)
 
         # store the image files
-        with open(str(dir_path) + '/' + str(filename) + '.' + str(img_type[0]), 'wb') as f:
+        with open(str(filename)+'.' + str(img_type[0]), 'wb') as f: #+ '/' + str(dir_path)[:-3] + '.'
             f.write(req_img_url.content)
 
         print(image_url)
@@ -138,3 +139,4 @@ def multiproc():
             p.start()
 
 multiproc()
+
